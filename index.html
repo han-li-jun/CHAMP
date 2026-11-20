@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="CHAMP: Coordinated Humanoid Loco-Manipulation with Whole-Body Motion Priors.">
+  <meta name="theme-color" content="#f8f7f2">
+  <title>CHAMP · Whole-Body Motion Priors</title>
+  <link rel="icon" type="image/svg+xml" href="assets/images/d-robotics-mark.svg">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="architecture.css">
+  <link rel="stylesheet" href="motion-preview.css">
+  <link rel="stylesheet" href="data-weave.css">
+  <link rel="stylesheet" href="results.css">
+  <script src="assets/data/corpus.js" defer></script>
+  <script src="assets/data/hero.js" defer></script>
+  <script src="architecture.js" defer></script>
+  <script src="assets/motion/sequence.js" defer></script>
+  <script src="motion-preview.js" defer></script>
+  <script src="app.js" defer></script>
+  <script src="assets/data/weave-motion.js" defer></script>
+  <script src="data-weave.js" defer></script>
+  <script src="assets/data/results.js" defer></script>
+  <script src="results.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#introduction">Skip to content</a>
+<div class="reading-progress" aria-hidden="true"></div>
+<header class="site-header">
+  <a class="brand" href="#top" aria-label="D-Robotics CHAMP home"><img class="corporate-logo" src="assets/images/d-robotics-horizontal.png" alt="D-Robotics 地瓜机器人" width="1920" height="549"><span class="brand-project">CHAMP</span><span class="brand-divider"></span><span class="brand-sub">Whole-Body Intelligence</span></a>
+  <nav aria-label="Main navigation"><a href="#demos">Demos</a><a href="#method">Method</a><a href="#data">Data</a></nav>
+</header>
+<main>
+  <section class="hero" id="top" aria-labelledby="hero-title">
+    <video id="hero-video" src="assets/video/hero.mp4" poster="assets/poster/hero.jpg" autoplay muted loop playsinline preload="auto" aria-label="CHAMP demonstrations of popcorn serving, bed making, laundry loading, and fruit collection"></video>
+    <div class="hero-shade"></div>
+    <div class="hero-copy">
+      <p class="eyebrow light">Learning motion. Coordinating action.</p>
+      <h1 id="hero-title">CHAMP</h1>
+      <p class="hero-subtitle">Coordinated Humanoid Loco-Manipulation<br>with Whole-Body Motion Priors</p>
+      <div class="hero-actions"><a class="button glass" href="#demos">Explore demonstrations <span aria-hidden="true">↓</span></a></div>
+    </div>
+    <div class="hero-bottom"><span id="hero-clip-label">Popcorn serving · 2× speed</span><button id="hero-pause" aria-label="Pause background video"><span class="pause-symbol" aria-hidden="true">Ⅱ</span><span class="pause-label">Pause</span></button></div>
+  </section>
+  <nav class="page-index" aria-label="On this page"><span>ON THIS PAGE</span><a href="#demos">01 &nbsp; Demonstrations</a><a href="#introduction">02 &nbsp; Introducing CHAMP</a><a href="#method">03 &nbsp; Method</a><a href="#data">04 &nbsp; Motion data</a><a href="#coordination">05 &nbsp; Whole-body skills</a><a href="#results">06 &nbsp; Results</a></nav>
+  <article class="article">
+    <section class="section demo-section" id="demos" aria-labelledby="demo-heading">
+      <div class="section-top"><p class="eyebrow">01 / CHAMP in action</p><h2 id="demo-heading">One body. Many ways to interact.</h2><p class="lead">Walking, reaching, bending, and handling objects—through coordinated body and hand actions.</p></div>
+      <div class="demo-viewer wide">
+        <div class="demo-stage"><div class="demo-backdrop" aria-hidden="true"></div><video id="demo-video" src="assets/video/fruit.mp4" poster="assets/poster/fruit.jpg" muted controls loop playsinline preload="metadata" aria-label="Fruit collection demonstration"></video></div>
+        <div class="demo-caption"><div><span class="task-label" id="demo-name">Fruit collection</span><p id="demo-description">Reach for fruit and place it into a basket.</p></div><div class="view-switch" id="view-switch" aria-label="Camera view"></div></div>
+        <div class="demo-picker" id="demo-picker" role="tablist" aria-label="Select a task"></div>
+      </div>
+    </section>
+    <section class="section" id="introduction" aria-labelledby="intro-heading">
+      <p class="eyebrow">02 / Introducing CHAMP</p><h2 id="intro-heading">Learning how the whole body moves.<br>Deciding how it should act.</h2>
+      <p class="lead">Moving and manipulating are tightly connected. The body brings the hands into reach; the demands of a task shape the body's motion. CHAMP learns these relationships from heterogeneous human and robot motion, then transfers them to coordinated humanoid control.</p>
+      <div class="principles wide">
+        <div><span class="principle-number">01</span><h3>Shared motion priors</h3><p>Body joints, wrists, fingertips, and root motion provide a shared representation across humans and robot embodiments.</p></div>
+        <div><span class="principle-number">02</span><h3>Adaptive feature access</h3><p>The Coordination-oriented Action Expert selects source layers and projection experts for each input token.</p></div>
+        <div><span class="principle-number">03</span><h3>Coordinated control</h3><p>A flow-matching action model jointly generates whole-body motion latents and commands for both hands.</p></div>
+      </div>
+    </section>
+    <section class="section" id="method" aria-labelledby="method-heading">
+      <p class="eyebrow">03 / Method</p><h2 id="method-heading">From motion prediction to robot action.</h2><p class="lead">CHAMP first learns whole-body motion priors from heterogeneous human and robot data, then grounds these priors in robot actions and fine-tunes the action expert for each task.</p>
+      <div class="method-tabs wide" role="tablist" aria-label="Training stages">
+        <button class="active" role="tab" aria-selected="true" aria-controls="method-panel" id="stage-0" data-stage="0"><span>01</span> Motion pretraining</button>
+        <button role="tab" aria-selected="false" aria-controls="method-panel" id="stage-1" data-stage="1"><span>02</span> Action grounding</button>
+        <button role="tab" aria-selected="false" aria-controls="method-panel" id="stage-2" data-stage="2"><span>03</span> Task fine-tuning</button>
+      </div>
+      <div class="method-panel wide" id="method-panel" role="tabpanel" aria-labelledby="stage-0"><div class="method-copy"><h3 id="stage-title">Predict future body and hand motion.</h3><p id="stage-description">The vision-language model uses RGB image input, an instruction prompt, and pose information to predict future body and hand motion. Body and hand motion are encoded separately.</p><div id="stage-chips" class="chips"><span>Human + robot data</span><span>Body + hand motion</span></div></div><div id="motion-preview"></div><div id="architecture-flow" class="flow-figure" hidden></div></div>
+      <div class="method-stage-navigation wide"><button id="method-previous" type="button" aria-controls="method-panel" hidden><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12H4m6-6-6 6 6 6"/></svg><span class="method-next-copy"><span id="method-previous-hint">Previous stage</span><strong id="method-previous-title">Motion pretraining</strong></span></button><button id="method-next" type="button" aria-controls="method-panel"><span class="method-next-copy"><span id="method-next-hint">Next stage</span><strong id="method-next-title">Action grounding</strong></span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16m-6-6 6 6-6 6"/></svg></button></div>
+      <div class="method-detail wide"><div><span class="small-label">The policy observes</span><p>RGB image <span>+</span> instruction <span>+</span> wrist and pelvis state <span>+</span> joint angles</p></div><div><span class="small-label">The policy generates</span><p>Whole-body motion latent <span>+</span> left and right hand commands</p></div></div>
+    </section>
+    <section class="section data-section" id="data" aria-labelledby="data-heading">
+      <p class="eyebrow">04 / Heterogeneous motion data</p><h2 id="data-heading">Many bodies.<br>One motion representation.</h2><p class="lead">CHAMP learns whole-body motion priors from human demonstrations, real humanoid recordings, and simulated robots. Samples contribute body motion, hand motion, or both.</p>
+      <div class="data-explorer wide">
+        <div class="data-weave-card">
+          <div class="weave-heading"><div><span class="small-label">Heterogeneous sources</span><h3>Different experiences. Shared motion.</h3></div><span class="weave-heading-note">Human × Robot × Simulation</span></div>
+          <div class="weave-stage"><canvas id="data-weave" tabindex="0" aria-label="Three interwoven streams of real dataset video clips. Drag to scrub; select a clip to watch. Use arrow keys to select a dataset sample and Enter to open it."></canvas><div id="weave-tooltip" role="status" aria-live="polite" hidden></div></div>
+          <div class="weave-toolbar"><div class="weave-legend" role="group" aria-label="Highlight data streams"><button type="button" class="weave-human" data-weave-domain="human" aria-pressed="false">Human</button><button type="button" class="weave-robot" data-weave-domain="robot" aria-pressed="false">Real robot</button><button type="button" class="weave-simulation" data-weave-domain="simulation" aria-pressed="false">Simulation</button></div><span class="weave-gesture">Drag to explore · select a clip</span><button id="weave-pause" type="button" aria-label="Pause video streams">Pause motion</button></div>
+        </div>
+        <div class="data-readout">
+          <div class="data-total"><p class="small-label" id="data-domain-label">Motion pretraining corpus</p><div class="hours"><strong id="hours-total">2,298</strong><span>hours</span></div><p id="data-context">9 datasets · 20 processed subsets</p><div class="domain-filters" role="group" aria-label="Filter data by domain"><button class="active" data-domain="all" aria-pressed="true">All data</button><button data-domain="human" aria-pressed="false">Human</button><button data-domain="robot" aria-pressed="false">Real robot</button><button data-domain="simulation" aria-pressed="false">Simulation</button></div></div>
+          <div class="domain-breakdown" id="domain-breakdown"></div>
+          <div class="sample-preview" id="sample-preview"><img id="sample-preview-image" alt="" hidden><div><span class="small-label">Explore the motion data</span><p id="sample-preview-label">Select a video in the streams to take a closer look.</p></div></div>
+        </div>
+      </div>
+      <p class="figure-note">Real video excerpts from the motion datasets, grouped by domain. Stream placement illustrates the shared representation; the hour totals and proportions below are computed from dataset metadata.</p>
+      <div class="annotation-summary wide"><div><h3>Different annotations.<br>Shared supervision.</h3><p>Each sample supervises only the motion targets it provides.</p></div><div class="annotation-chart"><div class="annotation-bar" id="annotation-bar" role="img" aria-label="Annotation coverage by duration"></div><div class="annotation-labels" id="annotation-labels"></div></div></div>
+      <details class="source-details wide"><summary>Explore all nine data sources <span aria-hidden="true">+</span></summary><div class="source-table-wrap"><table><thead><tr><th>Dataset</th><th>Domain</th><th>Motion annotations</th><th>Duration</th></tr></thead><tbody id="source-table"></tbody></table></div><p class="figure-note">Duration = frame count / frame rate. Totals cover the 20-subset corpus before the train/validation split.</p></details>
+    </section>
+    <section class="section" id="coordination" aria-labelledby="coordination-heading"><p class="eyebrow">05 / Whole-body skills</p><h2 id="coordination-heading">Body motion and hand motion,<br>working together.</h2><p class="lead">From bringing a hand into reach to handling deformable objects, humanoid manipulation calls for coordinated motion throughout the task.</p>
+      <div class="skill-grid wide"><figure><div class="skill-frame"><video class="viewport-video" data-src="assets/video/bed.mp4" poster="assets/poster/bed.jpg" muted controls loop playsinline preload="none" aria-label="CHAMP making a bed"></video></div><figcaption><h3>Bed making</h3><p>Whole-body reaching and bimanual interaction with fabric.</p></figcaption></figure><figure><div class="skill-frame"><video class="viewport-video" data-src="assets/video/laundry.mp4" poster="assets/poster/laundry.jpg" muted controls loop playsinline preload="none" aria-label="CHAMP loading a washing machine"></video></div><figcaption><h3>Laundry loading</h3><p>Place clothes into the washing machine.</p></figcaption></figure></div>
+      <div class="long-horizon wide"><div class="long-horizon-heading"><div><p class="small-label">A longer sequence of interactions</p><h3>Popcorn serving</h3></div><div class="angle-switch" role="group" aria-label="Popcorn camera view"><button class="active" data-popcorn="wide" aria-pressed="true">Wide view</button><button data-popcorn="close" aria-pressed="false">Close view</button></div></div><div class="long-frame"><video id="popcorn-video" class="viewport-video" data-src="assets/video/popcorn-wide.mp4" poster="assets/poster/popcorn-wide.jpg" muted controls loop playsinline preload="none" aria-label="CHAMP serving popcorn"></video></div><p class="figure-note">Use a scoop to fill a paper cup with popcorn, then place the cup on the table.</p></div>
+    </section>
+    <section class="section results-section" id="results" aria-labelledby="results-heading">
+      <p class="eyebrow">06 / Real-world evaluation</p><h2 id="results-heading">Coordinated action.<br>Evaluated on the real robot.</h2><p class="lead">Seven tasks on a Unitree G1 with Dex3 hands, from everyday manipulation to long-horizon popcorn serving.</p>
+      <div class="results-card wide" id="results-chart">
+        <div class="results-card-head">
+          <div><h3 id="results-chart-heading">Real-world success rates</h3><p>Seven real-world tasks · Six baselines</p></div>
+          <div class="results-summary" aria-label="CHAMP real-world results">
+            <div class="result-stat"><strong>91.4<small>%</small></strong><span>CHAMP overall</span></div>
+            <div class="result-stat"><strong>64<small>/ 70</small></strong><span>Successful trials</span></div>
+          </div>
+        </div>
+        <div class="results-legend" role="group" aria-label="Highlight a method"></div>
+        <div class="results-chart-scroll" role="region" aria-labelledby="results-chart-heading"><svg role="group"></svg></div>
+        <div class="results-tooltip" role="status" aria-live="polite" hidden><strong></strong><span></span></div>
+        <div class="results-footnote"><span class="results-chart-note">10 trials per task · 70 trials overall</span><span class="results-interaction-hint">Select a task or method to highlight · select again to reset</span><span class="results-chart-scroll-hint" hidden>Swipe to explore →</span></div>
+      </div>
+      <p class="results-protocol wide">All methods use the same 100 demonstrations and number of training steps for each task. Popcorn serving is successful only when the entire sequence is completed.</p>
+    </section>
+  </article>
+</main>
+<footer><a class="brand footer-brand" href="#top" aria-label="D-Robotics CHAMP home"><img class="corporate-logo" src="assets/images/d-robotics-horizontal.png" alt="D-Robotics 地瓜机器人" width="1920" height="549"><span class="brand-project">CHAMP</span></a><span>Whole-body motion priors. Coordinated humanoid control.</span><a href="#top">Back to top ↑</a></footer>
+<dialog id="image-dialog"><button class="dialog-close" aria-label="Close media">×</button><img alt=""><video id="sample-video" muted controls loop playsinline hidden></video><p></p></dialog>
+<dialog id="architecture-dialog" aria-label="Expanded animated model architecture"><div class="architecture-dialog-body"></div></dialog>
+</body>
+</html>

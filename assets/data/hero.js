@@ -1,0 +1,1 @@
+window.CHAMP_HERO = [{"file": "popcorn-wide", "speed": 2, "end": 29.833333, "label": "Popcorn serving · 2× speed"}, {"file": "bed", "speed": 1, "end": 35.875, "label": "Bed making"}, {"file": "laundry", "speed": 1, "end": 41.916667000000004, "label": "Laundry loading"}, {"file": "fruit", "speed": 1, "end": 47.95833400000001, "label": "Fruit collection"}];
