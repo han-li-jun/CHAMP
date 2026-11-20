@@ -27,6 +27,7 @@
   const demo = $('#demo-video');
   function setDemoView(task, index, autoplay) {
     const [file,label] = task.views[index];
+    $('#demo-speed').hidden = task.id === 'popcorn-wide';
     demo.src = `assets/video/${file}.mp4`; demo.poster = `assets/poster/${file}.jpg`;
     demo.setAttribute('aria-label', `${task.name}, ${label.toLowerCase()}`);
     $('.demo-backdrop').style.backgroundImage = `url("assets/poster/${file}.jpg")`;

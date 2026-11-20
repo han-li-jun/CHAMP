@@ -40,3 +40,8 @@ dialog{max-width:min(1260px,94vw);width:max-content;border:0;padding:40px 24px 2
 #method-previous{background:#fffaf7;border-color:#e3cfc5}#method-previous[hidden]{display:none}
 @media(hover:hover){#method-next:hover,#method-previous:hover{background:#ffe5d8;border-color:#e59677}}
 @media(max-width:600px){.method-stage-navigation{margin-top:13px;gap:10px}#method-next,#method-previous{min-width:0;flex:1;gap:8px;padding:10px 12px}#method-next-title,#method-previous-title{font-size:12px;line-height:1.4}#method-next-hint,#method-previous-hint{font-size:9px}#method-next svg,#method-previous svg{width:17px}#method-next:only-child{max-width:230px}}
+
+/* Playback speed labels for real-time demonstrations. */
+.skill-frame{position:relative}
+.video-speed{position:absolute;top:14px;right:14px;z-index:1;pointer-events:none;display:inline-flex;align-items:center;border:1px solid #ffffff40;border-radius:5px;background:#191513b3;color:#fff;padding:5px 9px;font-size:11px;font-weight:500;line-height:1.3;letter-spacing:.02em;backdrop-filter:blur(8px)}
+.video-speed[hidden]{display:none}
