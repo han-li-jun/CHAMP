@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="styles.css?v=cf9b2946a5">
   <link rel="stylesheet" href="architecture.css?v=129af51d35">
   <link rel="stylesheet" href="motion-preview.css">
-  <link rel="stylesheet" href="data-weave.css?v=78f2e7fff8">
+  <link rel="stylesheet" href="data-weave.css?v=34fbb79992">
   <link rel="stylesheet" href="results.css?v=ae328a8d78">
   <script src="assets/data/corpus.js" defer></script>
   <script src="assets/data/hero.js" defer></script>
@@ -18,6 +18,8 @@
   <script src="assets/motion/sequence.js" defer></script>
   <script src="motion-preview.js" defer></script>
   <script src="app.js?v=9703c96bfa" defer></script>
+  <script src="assets/data/annotation-motion.js?v=7e4b584264" defer></script>
+  <script src="annotation-skeletons.js?v=3338b65b2d" defer></script>
   <script src="assets/data/weave-motion.js" defer></script>
   <script src="data-weave.js" defer></script>
   <script src="assets/data/results.js" defer></script>
@@ -90,15 +92,15 @@
       <div class="annotation-summary wide"><div><h3>Different annotations.<br>Shared supervision.</h3><p>Each sample supervises only the motion targets it provides.</p></div><div class="annotation-chart"><div class="annotation-bar" id="annotation-bar" role="img" aria-label="Annotation coverage by duration"></div><div class="annotation-labels" id="annotation-labels"></div></div></div>
       <div class="annotation-examples wide" role="group" aria-label="Examples of the three motion annotation types">
         <figure class="annotation-example" data-annotation="body-hand">
-          <div class="annotation-example-media"><video id="annotation-body-hand" data-src="assets/data/clips/arctic-task-00.mp4" poster="assets/data/samples/arctic-task-00.jpg" muted loop playsinline preload="none" aria-label="Body and hand motion data example from ARCTIC"></video></div>
+          <div class="annotation-example-media"><div class="annotation-skeleton"><svg viewBox="0 0 170 282" role="img" aria-label="Body and hand keypoints, synchronized with the video"></svg></div><div class="annotation-example-rgb"><video id="annotation-body-hand" data-src="assets/data/clips/arctic-task-00.mp4" poster="assets/data/samples/arctic-task-00.jpg" muted loop playsinline preload="none" aria-label="Body and hand motion data example from ARCTIC"></video></div></div>
           <figcaption><div><h4>Body + hands</h4><p>ARCTIC <span>· Human</span></p></div><button type="button" data-annotation-play="annotation-body-hand" aria-label="Play body and hands example"><span aria-hidden="true">▶</span><span class="annotation-play-label">Play</span></button></figcaption>
         </figure>
         <figure class="annotation-example" data-annotation="hand">
-          <div class="annotation-example-media"><video id="annotation-hand" data-src="assets/data/clips/egodex-task-02.mp4" poster="assets/data/samples/egodex-task-02.jpg" muted loop playsinline preload="none" aria-label="Hand motion data example from EgoDex"></video></div>
+          <div class="annotation-example-media"><div class="annotation-skeleton"><svg viewBox="0 0 170 282" role="img" aria-label="Wrist and fingertip keypoints, synchronized with the video"></svg></div><div class="annotation-example-rgb"><video id="annotation-hand" data-src="assets/data/clips/egodex-task-02.mp4" poster="assets/data/samples/egodex-task-02.jpg" muted loop playsinline preload="none" aria-label="Hand motion data example from EgoDex"></video></div></div>
           <figcaption><div><h4>Hands only</h4><p>EgoDex <span>· Human</span></p></div><button type="button" data-annotation-play="annotation-hand" aria-label="Play hands only example"><span aria-hidden="true">▶</span><span class="annotation-play-label">Play</span></button></figcaption>
         </figure>
         <figure class="annotation-example" data-annotation="body">
-          <div class="annotation-example-media"><video id="annotation-body" data-src="assets/data/clips/hiw-500-task-03.mp4" poster="assets/data/samples/hiw-500-task-03.jpg" muted loop playsinline preload="none" aria-label="Body motion data example from HIW-500"></video></div>
+          <div class="annotation-example-media"><div class="annotation-skeleton"><svg viewBox="0 0 170 282" role="img" aria-label="Body keypoints, synchronized with the video"></svg></div><div class="annotation-example-rgb"><video id="annotation-body" data-src="assets/data/clips/hiw-500-task-03.mp4" poster="assets/data/samples/hiw-500-task-03.jpg" muted loop playsinline preload="none" aria-label="Body motion data example from HIW-500"></video></div></div>
           <figcaption><div><h4>Body only</h4><p>HIW-500 <span>· Real robot</span></p></div><button type="button" data-annotation-play="annotation-body" aria-label="Play body only example"><span aria-hidden="true">▶</span><span class="annotation-play-label">Play</span></button></figcaption>
         </figure>
       </div>
