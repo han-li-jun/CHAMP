@@ -96,6 +96,7 @@
   const annotationNames={'body-hand':'Body + hands',hand:'Hands only',body:'Body only'};
   const annotationColors={'body-hand':'#e75b35',hand:'#f49e85',body:'#f7d4c9'};
   const annotationAlt=[];
+  $('.annotation-chart').style.setProperty('--annotation-columns', Object.values(data.annotations).map(hours => `${hours}fr`).join(' '));
   Object.entries(data.annotations).forEach(([id,hours])=>{const pct=hours/data.totalHours*100;const bar=document.createElement('span');bar.style.setProperty('--color',annotationColors[id]);bar.style.setProperty('--width',pct+'%');bar.title=`${annotationNames[id]}: ${pct.toFixed(1)}%`;$('#annotation-bar').append(bar);const label=document.createElement('div');label.innerHTML=`<b>${pct.toFixed(1)}%</b>${annotationNames[id]}`;$('#annotation-labels').append(label);annotationAlt.push(`${annotationNames[id]} ${pct.toFixed(1)} percent`);});$('#annotation-bar').setAttribute('aria-label',annotationAlt.join(', '));
   const domainOrder=['human','robot','simulation'];
   [...data.sources].sort((a,b)=>domainOrder.indexOf(a.domain)-domainOrder.indexOf(b.domain)||b.hours-a.hours).forEach(s=>{const row=document.createElement('tr');row.innerHTML=`<td>${s.name}</td><td>${domainLabels[s.domain]}</td><td>${s.annotations.map(a=>annotationNames[a]).join(' / ')}</td><td>${oneDecimal.format(s.hours)} h</td>`;$('#source-table').append(row);});

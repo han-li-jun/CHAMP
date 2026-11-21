@@ -9,8 +9,11 @@
 /* Compact motion examples aligned with their annotation percentages. */
 .annotation-summary{align-items:center}
 .annotation-chart{min-width:0}
-.annotation-labels{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;text-align:center}
-.annotation-examples{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:15px}
+.annotation-chart .annotation-bar,.annotation-labels,.annotation-examples{display:grid;grid-template-columns:var(--annotation-columns,56.4fr 29fr 14.6fr);gap:3px}
+.annotation-chart .annotation-bar>span{width:100%}
+.annotation-labels{text-align:center}
+.annotation-labels>div{min-width:0}
+.annotation-examples{margin-top:15px}
 .annotation-example{margin:0;min-width:0;text-align:center}
 .annotation-example-media{background:transparent}
 .annotation-skeleton{min-width:0}
@@ -22,4 +25,4 @@
 .annotation-skeleton .root-point{fill:#e26d35}
 .annotation-hand-label{font-size:16px;fill:#82766d;font-family:inherit}
 @media(max-width:850px){.annotation-summary{grid-template-columns:1fr;gap:20px}.annotation-summary p{max-width:none}.annotation-skeleton svg{height:146px}}
-@media(max-width:600px){.annotation-labels,.annotation-examples{gap:4px}.annotation-examples{margin-top:10px}.annotation-skeleton svg{height:112px}}
+@media(max-width:600px){.annotation-examples{margin-top:10px}.annotation-skeleton svg{height:112px}}
