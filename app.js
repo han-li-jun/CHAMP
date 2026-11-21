@@ -70,29 +70,6 @@
   dialog.addEventListener('cancel',()=>$('#sample-video').pause());
   $('.dialog-close').addEventListener('click',closeMedia);dialog.addEventListener('click',e=>{if(e.target===dialog)closeMedia();});
   const videoObserver=new IntersectionObserver(entries=>entries.forEach(e=>{const v=e.target;if(e.isIntersecting){if(!v.src){v.src=v.dataset.src;v.load();}play(v);}else v.pause();}),{threshold:.25});$$('.viewport-video').forEach(v=>videoObserver.observe(v));
-  const annotationPlayers = $$('.annotation-example').map(card => {
-    const video = card.querySelector('video');
-    const button = card.querySelector('[data-annotation-play]');
-    const label = card.querySelector('h4').textContent.toLowerCase();
-    const state = { visible: false, userPaused: reduceMotion };
-    const updateButton = () => {
-      button.firstElementChild.textContent = video.paused ? '▶' : 'Ⅱ';
-      button.querySelector('.annotation-play-label').textContent = video.paused ? 'Play' : 'Pause';
-      button.setAttribute('aria-label', `${video.paused ? 'Play' : 'Pause'} ${label} example`);
-    };
-    const sync = () => {
-      if (state.visible && !state.userPaused && !document.hidden) {
-        if (!video.getAttribute('src')) { video.src = video.dataset.src; video.load(); }
-        video.play().catch(updateButton);
-      } else video.pause();
-    };
-    button.addEventListener('click', () => { state.userPaused = !video.paused; sync(); });
-    video.addEventListener('play', updateButton);
-    video.addEventListener('pause', updateButton);
-    new IntersectionObserver(entries => entries.forEach(e => { state.visible = e.isIntersecting; sync(); }), { threshold: .25 }).observe(card);
-    return sync;
-  });
-  document.addEventListener('visibilitychange', () => annotationPlayers.forEach(sync => sync()));
   $$('[data-popcorn]').forEach(b=>b.addEventListener('click',()=>{
     const v=$('#popcorn-video'),time=v.currentTime,wasPaused=v.paused;
     v.preload='metadata';

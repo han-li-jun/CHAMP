@@ -35,7 +35,7 @@
   }
   document.querySelectorAll('.annotation-example').forEach(card => {
     const kind = card.dataset.annotation, motion = data[kind];
-    const svg = card.querySelector('.annotation-skeleton svg'), video = card.querySelector('video');
+    const svg = card.querySelector('.annotation-skeleton svg');
     if (!motion || !svg) return;
     const draws = [];
     if (motion.body) {
@@ -44,26 +44,42 @@
         edges.push([2,13],[8,19]);
         for (let finger=1; finger<=5; finger++) edges.push([13,13+finger],[19,19+finger]);
       }
-      draws.push(layer(svg,motion.body,{x:13,y:13,w:144,h:kind==='body-hand'?176:237},edges));
+      draws.push(layer(svg,motion.body,{x:35,y:21,w:290,h:278},edges));
     }
-    if (motion.hands) motion.hands.forEach((hand,i) => {
-      const box = kind==='hand' ? {x:19,y:29+i*127,w:132,h:92} : {x:10+i*82,y:213,w:68,h:43};
+    if (kind === 'hand') motion.hands.forEach((hand,i) => {
+      const box = {x:36+i*172,y:69,w:116,h:173};
       draws.push(layer(svg,hand,box,handEdges,true));
-      const label = add(svg,'text',{x:kind==='hand'?17:44+i*82,y:kind==='hand'?23+i*127:270,'text-anchor':kind==='hand'?'start':'middle',class:'annotation-hand-label'});
-      label.textContent = i===0?'L':'R';
+      const label = add(svg,'text',{x:94+i*172,y:278,'text-anchor':'middle',class:'annotation-hand-label'});
+      label.textContent = i===0?'Left':'Right';
     });
-    if (kind==='body-hand') add(svg,'line',{x1:14,y1:201,x2:156,y2:201,class:'annotation-skeleton-divider'});
     const render = time => draws.forEach(draw => draw(Math.min(motion.duration,Math.max(0,time))*motion.fps));
     render(0);
-    video.addEventListener('seeked',()=>render(video.currentTime));
-    video.addEventListener('timeupdate',()=>render(video.currentTime));
-    if ('requestVideoFrameCallback' in video) {
-      const frame = (_,metadata) => {render(metadata.mediaTime);video.requestVideoFrameCallback(frame);};
-      video.requestVideoFrameCallback(frame);
-    } else {
-      let handle;
-      const frame = () => {render(video.currentTime);if(!video.paused)handle=requestAnimationFrame(frame);};
-      video.addEventListener('play',()=>{cancelAnimationFrame(handle);frame();});
-    }
+    const button = card.querySelector('[data-annotation-play]');
+    const label = card.querySelector('h4').textContent.toLowerCase();
+    let visible = false, userPaused = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let playing = false, elapsed = 0, previous = null, handle = null;
+    const frame = now => {
+      if (!playing) return;
+      if (previous !== null) elapsed = (elapsed + (now-previous)/1000) % motion.duration;
+      previous = now;
+      render(elapsed);
+      handle = requestAnimationFrame(frame);
+    };
+    const sync = () => {
+      playing = visible && !userPaused && !document.hidden;
+      cancelAnimationFrame(handle);
+      previous = null;
+      if (playing) handle = requestAnimationFrame(frame);
+      button.firstElementChild.textContent = playing ? 'Ⅱ' : '▶';
+      button.querySelector('.annotation-play-label').textContent = playing ? 'Pause' : 'Play';
+      button.setAttribute('aria-label', `${playing ? 'Pause' : 'Play'} ${label} example`);
+      button.setAttribute('aria-pressed', String(playing));
+    };
+    button.addEventListener('click', () => {userPaused = playing; sync();});
+    new IntersectionObserver(entries => entries.forEach(entry => {
+      visible = entry.isIntersecting; sync();
+    }), {threshold:.25}).observe(card);
+    document.addEventListener('visibilitychange', sync);
+    sync();
   });
 })();
