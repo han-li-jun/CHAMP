@@ -10,14 +10,14 @@
   <link rel="stylesheet" href="styles.css?v=cf9b2946a5">
   <link rel="stylesheet" href="architecture.css?v=129af51d35">
   <link rel="stylesheet" href="motion-preview.css">
-  <link rel="stylesheet" href="data-weave.css?v=eea3ebf0e3">
+  <link rel="stylesheet" href="data-weave.css?v=78f2e7fff8">
   <link rel="stylesheet" href="results.css?v=ae328a8d78">
   <script src="assets/data/corpus.js" defer></script>
   <script src="assets/data/hero.js" defer></script>
   <script src="architecture.js" defer></script>
   <script src="assets/motion/sequence.js" defer></script>
   <script src="motion-preview.js" defer></script>
-  <script src="app.js" defer></script>
+  <script src="app.js?v=9703c96bfa" defer></script>
   <script src="assets/data/weave-motion.js" defer></script>
   <script src="data-weave.js" defer></script>
   <script src="assets/data/results.js" defer></script>
@@ -88,7 +88,21 @@
       </div>
       <p class="figure-note">Real video excerpts from the motion datasets, grouped by domain. Stream placement illustrates the shared representation; the hour totals and proportions below are computed from dataset metadata.</p>
       <div class="annotation-summary wide"><div><h3>Different annotations.<br>Shared supervision.</h3><p>Each sample supervises only the motion targets it provides.</p></div><div class="annotation-chart"><div class="annotation-bar" id="annotation-bar" role="img" aria-label="Annotation coverage by duration"></div><div class="annotation-labels" id="annotation-labels"></div></div></div>
-      <details class="source-details wide"><summary>Explore all nine data sources <span aria-hidden="true">+</span></summary><div class="source-table-wrap"><table><thead><tr><th>Dataset</th><th>Domain</th><th>Motion annotations</th><th>Duration</th></tr></thead><tbody id="source-table"></tbody></table></div><p class="figure-note">Duration = frame count / frame rate. Totals cover the 20-subset corpus before the train/validation split.</p></details>
+      <div class="annotation-examples wide" role="group" aria-label="Examples of the three motion annotation types">
+        <figure class="annotation-example" data-annotation="body-hand">
+          <div class="annotation-example-media"><video id="annotation-body-hand" data-src="assets/data/clips/arctic-task-00.mp4" poster="assets/data/samples/arctic-task-00.jpg" muted loop playsinline preload="none" aria-label="Body and hand motion data example from ARCTIC"></video></div>
+          <figcaption><div><h4>Body + hands</h4><p>ARCTIC <span>· Human</span></p></div><button type="button" data-annotation-play="annotation-body-hand" aria-label="Play body and hands example"><span aria-hidden="true">▶</span><span class="annotation-play-label">Play</span></button></figcaption>
+        </figure>
+        <figure class="annotation-example" data-annotation="hand">
+          <div class="annotation-example-media"><video id="annotation-hand" data-src="assets/data/clips/egodex-task-02.mp4" poster="assets/data/samples/egodex-task-02.jpg" muted loop playsinline preload="none" aria-label="Hand motion data example from EgoDex"></video></div>
+          <figcaption><div><h4>Hands only</h4><p>EgoDex <span>· Human</span></p></div><button type="button" data-annotation-play="annotation-hand" aria-label="Play hands only example"><span aria-hidden="true">▶</span><span class="annotation-play-label">Play</span></button></figcaption>
+        </figure>
+        <figure class="annotation-example" data-annotation="body">
+          <div class="annotation-example-media"><video id="annotation-body" data-src="assets/data/clips/hiw-500-task-03.mp4" poster="assets/data/samples/hiw-500-task-03.jpg" muted loop playsinline preload="none" aria-label="Body motion data example from HIW-500"></video></div>
+          <figcaption><div><h4>Body only</h4><p>HIW-500 <span>· Real robot</span></p></div><button type="button" data-annotation-play="annotation-body" aria-label="Play body only example"><span aria-hidden="true">▶</span><span class="annotation-play-label">Play</span></button></figcaption>
+        </figure>
+      </div>
+      <details class="source-details wide" open><summary>Explore all nine data sources <span aria-hidden="true">+</span></summary><div class="source-table-wrap"><table><thead><tr><th>Dataset</th><th>Domain</th><th>Motion annotations</th><th>Duration</th></tr></thead><tbody id="source-table"></tbody></table></div><p class="figure-note">Duration = frame count / frame rate. Totals cover the 20-subset corpus before the train/validation split.</p></details>
     </section>
     <section class="section" id="coordination" aria-labelledby="coordination-heading"><p class="eyebrow">05 / Whole-body skills</p><h2 id="coordination-heading">Body motion and hand motion,<br>working together.</h2><p class="lead">From bringing a hand into reach to handling deformable objects, humanoid manipulation calls for coordinated motion throughout the task.</p>
       <div class="skill-grid wide"><figure><div class="skill-frame"><video class="viewport-video" data-src="assets/video/bed.mp4" poster="assets/poster/bed.jpg" muted controls loop playsinline preload="none" aria-label="CHAMP making a bed"></video><span class="video-speed">1× speed</span></div><figcaption><h3>Bed making</h3><p>Whole-body reaching and bimanual interaction with fabric.</p></figcaption></figure><figure><div class="skill-frame"><video class="viewport-video" data-src="assets/video/laundry.mp4" poster="assets/poster/laundry.jpg" muted controls loop playsinline preload="none" aria-label="CHAMP loading a washing machine"></video><span class="video-speed">1× speed</span></div><figcaption><h3>Laundry loading</h3><p>Place clothes into the washing machine.</p></figcaption></figure></div>

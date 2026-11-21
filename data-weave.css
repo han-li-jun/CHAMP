@@ -5,3 +5,21 @@
 .weave-legend{gap:6px}.weave-legend>button{--stream-color:#ff5125;--stream-tint:#fff0eb;min-height:32px;padding:6px 10px;border:1px solid transparent;border-radius:5px;background:transparent;color:#73645f;font:inherit;cursor:pointer;transition:background .18s,border-color .18s,opacity .18s,color .18s}.weave-legend>.weave-robot{--stream-color:#568e9c;--stream-tint:#e8f1f3}.weave-legend>.weave-simulation{--stream-color:#9e84b9;--stream-tint:#f0ebf6}.weave-legend>button:hover{background:var(--stream-tint);color:var(--stream-color)}.weave-legend>button[aria-pressed=true]{background:var(--stream-tint);border-color:var(--stream-color);color:var(--stream-color);font-weight:600}.weave-legend.has-selection>button[aria-pressed=false]{opacity:.68}.weave-legend.has-selection>button:hover{opacity:1}.weave-legend>button:focus-visible{outline:2px solid var(--stream-color);outline-offset:2px}
 @media(max-width:600px){.weave-legend{gap:3px}.weave-legend>button{min-height:34px;padding:6px 5px;gap:4px}}
 .weave-legend>button.is-spotlight{background:var(--stream-tint);border-color:var(--stream-color);color:var(--stream-color);font-weight:600}.weave-legend.has-spotlight>button:not(.is-spotlight){opacity:.68}.weave-legend.has-spotlight>button:hover{opacity:1}
+
+/* Dataset examples, ordered to match the annotation coverage legend. */
+.annotation-examples{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:25px}
+.annotation-example{--annotation-color:#e75b35;overflow:hidden;border:1px solid #e4dbd5;border-radius:10px;background:#fffdfb;margin:0;min-width:0}
+.annotation-example[data-annotation="hand"]{--annotation-color:#f49e85}
+.annotation-example[data-annotation="body"]{--annotation-color:#f7d4c9}
+.annotation-example-media{aspect-ratio:16/9;background:#eee8e3;border-top:4px solid var(--annotation-color)}
+.annotation-example video{width:100%;height:100%;display:block;object-fit:cover}
+.annotation-example figcaption{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:17px 16px 18px}
+.annotation-example h4{margin:0;font-size:17px;line-height:1.3;font-weight:600}
+.annotation-example p{font-size:14px;line-height:1.6;margin-top:5px;color:#6d625d}
+.annotation-example p span{color:#8a7b74}
+.annotation-example button{display:inline-flex;align-items:center;justify-content:center;gap:6px;flex-shrink:0;min-height:36px;padding:6px 10px;border:1px solid #e3d5cd;border-radius:6px;background:#faf4ef;color:#795344;font-size:13px;line-height:1.3}
+.annotation-example button:hover{background:#fff0e5;border-color:#d5ad98}
+.annotation-example button:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.annotation-example button>span:first-child{width:10px;font-size:11px;text-align:center}
+@media(max-width:850px){.annotation-examples{gap:12px}.annotation-example figcaption{align-items:flex-start;flex-direction:column;padding:14px}.annotation-example h4{font-size:16px}}
+@media(max-width:600px){.annotation-examples{grid-template-columns:1fr;gap:18px;margin-top:22px}.annotation-example figcaption{flex-direction:row;align-items:center;padding:16px}.annotation-example h4{font-size:18px}.annotation-example button{font-size:14px;min-height:40px}}
