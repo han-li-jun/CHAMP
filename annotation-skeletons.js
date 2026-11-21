@@ -54,9 +54,8 @@
     });
     const render = time => draws.forEach(draw => draw(Math.min(motion.duration,Math.max(0,time))*motion.fps));
     render(0);
-    const button = card.querySelector('[data-annotation-play]');
-    const label = card.getAttribute('aria-label').toLowerCase();
-    let visible = false, userPaused = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+    let visible = false;
     let playing = false, elapsed = 0, previous = null, handle = null;
     const frame = now => {
       if (!playing) return;
@@ -66,20 +65,16 @@
       handle = requestAnimationFrame(frame);
     };
     const sync = () => {
-      playing = visible && !userPaused && !document.hidden;
+      playing = visible && !reducedMotion.matches && !document.hidden;
       cancelAnimationFrame(handle);
       previous = null;
       if (playing) handle = requestAnimationFrame(frame);
-      button.firstElementChild.textContent = playing ? 'Ⅱ' : '▶';
-      button.querySelector('.annotation-play-label').textContent = playing ? 'Pause' : 'Play';
-      button.setAttribute('aria-label', `${playing ? 'Pause' : 'Play'} ${label} example`);
-      button.setAttribute('aria-pressed', String(playing));
     };
-    button.addEventListener('click', () => {userPaused = playing; sync();});
     new IntersectionObserver(entries => entries.forEach(entry => {
       visible = entry.isIntersecting; sync();
     }), {threshold:.25}).observe(card);
     document.addEventListener('visibilitychange', sync);
+    reducedMotion.addEventListener('change', sync);
     sync();
   });
 })();

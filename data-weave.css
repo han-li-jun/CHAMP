@@ -21,10 +21,5 @@
 .annotation-skeleton .hand-point,.annotation-hand-points circle{fill:#b05183}
 .annotation-skeleton .root-point{fill:#e26d35}
 .annotation-hand-label{font-size:16px;fill:#82766d;font-family:inherit}
-.annotation-example figcaption{display:flex;justify-content:center;margin-top:5px}
-.annotation-example button{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:32px;padding:4px 9px;border:1px solid transparent;border-radius:5px;background:transparent;color:#82736b;font-size:12px;line-height:1.3}
-.annotation-example button:hover{background:#fff0e5;border-color:#e6d3c8;color:#795344}
-.annotation-example button:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-.annotation-example button>span:first-child{width:10px;font-size:11px;text-align:center}
 @media(max-width:850px){.annotation-summary{grid-template-columns:1fr;gap:20px}.annotation-summary p{max-width:none}.annotation-skeleton svg{height:146px}}
-@media(max-width:600px){.annotation-labels,.annotation-examples{gap:4px}.annotation-examples{margin-top:10px}.annotation-skeleton svg{height:112px}.annotation-example button{min-height:36px;padding:5px 7px}}
+@media(max-width:600px){.annotation-labels,.annotation-examples{gap:4px}.annotation-examples{margin-top:10px}.annotation-skeleton svg{height:112px}}
