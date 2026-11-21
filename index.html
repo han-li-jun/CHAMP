@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="styles.css?v=cf9b2946a5">
   <link rel="stylesheet" href="architecture.css?v=129af51d35">
   <link rel="stylesheet" href="motion-preview.css">
-  <link rel="stylesheet" href="data-weave.css?v=f14ee46a1a">
+  <link rel="stylesheet" href="data-weave.css?v=27b976bfed">
   <link rel="stylesheet" href="results.css?v=ae328a8d78">
   <script src="assets/data/corpus.js" defer></script>
   <script src="assets/data/hero.js" defer></script>
@@ -19,7 +19,7 @@
   <script src="motion-preview.js" defer></script>
   <script src="app.js?v=51c60d724d" defer></script>
   <script src="assets/data/annotation-motion.js?v=1ca137d097" defer></script>
-  <script src="annotation-skeletons.js?v=ca61f7249d" defer></script>
+  <script src="annotation-skeletons.js?v=5aa726b86a" defer></script>
   <script src="assets/data/weave-motion.js" defer></script>
   <script src="data-weave.js" defer></script>
   <script src="assets/data/results.js" defer></script>
@@ -89,21 +89,22 @@
         </div>
       </div>
       <p class="figure-note">Real video excerpts from the motion datasets, grouped by domain. Stream placement illustrates the shared representation; the hour totals and proportions below are computed from dataset metadata.</p>
-      <div class="annotation-summary wide"><div><h3>Different annotations.<br>Shared supervision.</h3><p>Each sample supervises only the motion targets it provides.</p></div><div class="annotation-chart"><div class="annotation-bar" id="annotation-bar" role="img" aria-label="Annotation coverage by duration"></div><div class="annotation-labels" id="annotation-labels"></div></div></div>
-      <div class="annotation-examples wide" role="group" aria-label="Examples of the three motion annotation types">
-        <figure class="annotation-example" data-annotation="body-hand">
+      <div class="annotation-summary wide"><div><h3>Different annotations.<br> Shared supervision.</h3><p>Each sample supervises only the motion targets it provides.</p></div><div class="annotation-chart"><div class="annotation-bar" id="annotation-bar" role="img" aria-label="Annotation coverage by duration"></div><div class="annotation-labels" id="annotation-labels"></div>
+      <div class="annotation-examples" role="group" aria-label="Examples of the three motion annotation types">
+        <figure class="annotation-example" data-annotation="body-hand" aria-label="Body + hands">
           <div class="annotation-example-media"><div class="annotation-skeleton"><svg viewBox="0 0 360 320" role="img" aria-label="Body and hand keypoints, animated from recorded motion"></svg></div></div>
-          <figcaption><div><h4>Body + hands</h4><p>ARCTIC <span>· Human</span></p></div><button type="button" data-annotation-play="annotation-body-hand" aria-label="Play body and hands example"><span aria-hidden="true">▶</span><span class="annotation-play-label">Play</span></button></figcaption>
+          <figcaption><button type="button" data-annotation-play="annotation-body-hand" aria-label="Play body and hands example"><span aria-hidden="true">▶</span><span class="annotation-play-label">Play</span></button></figcaption>
         </figure>
-        <figure class="annotation-example" data-annotation="hand">
+        <figure class="annotation-example" data-annotation="hand" aria-label="Hands only">
           <div class="annotation-example-media"><div class="annotation-skeleton"><svg viewBox="0 0 360 320" role="img" aria-label="Wrist and fingertip keypoints, animated from recorded motion"></svg></div></div>
-          <figcaption><div><h4>Hands only</h4><p>EgoDex <span>· Human</span></p></div><button type="button" data-annotation-play="annotation-hand" aria-label="Play hands only example"><span aria-hidden="true">▶</span><span class="annotation-play-label">Play</span></button></figcaption>
+          <figcaption><button type="button" data-annotation-play="annotation-hand" aria-label="Play hands only example"><span aria-hidden="true">▶</span><span class="annotation-play-label">Play</span></button></figcaption>
         </figure>
-        <figure class="annotation-example" data-annotation="body">
+        <figure class="annotation-example" data-annotation="body" aria-label="Body only">
           <div class="annotation-example-media"><div class="annotation-skeleton"><svg viewBox="0 0 360 320" role="img" aria-label="Body keypoints, animated from recorded motion"></svg></div></div>
-          <figcaption><div><h4>Body only</h4><p>HIW-500 <span>· Real robot</span></p></div><button type="button" data-annotation-play="annotation-body" aria-label="Play body only example"><span aria-hidden="true">▶</span><span class="annotation-play-label">Play</span></button></figcaption>
+          <figcaption><button type="button" data-annotation-play="annotation-body" aria-label="Play body only example"><span aria-hidden="true">▶</span><span class="annotation-play-label">Play</span></button></figcaption>
         </figure>
       </div>
+      </div></div>
       <details class="source-details wide" open><summary>Explore all nine data sources <span aria-hidden="true">+</span></summary><div class="source-table-wrap"><table><thead><tr><th>Dataset</th><th>Domain</th><th>Motion annotations</th><th>Duration</th></tr></thead><tbody id="source-table"></tbody></table></div><p class="figure-note">Duration = frame count / frame rate. Totals cover the 20-subset corpus before the train/validation split.</p></details>
     </section>
     <section class="section" id="coordination" aria-labelledby="coordination-heading"><p class="eyebrow">05 / Whole-body skills</p><h2 id="coordination-heading">Body motion and hand motion,<br>working together.</h2><p class="lead">From bringing a hand into reach to handling deformable objects, humanoid manipulation calls for coordinated motion throughout the task.</p>

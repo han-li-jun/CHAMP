@@ -55,7 +55,7 @@
     const render = time => draws.forEach(draw => draw(Math.min(motion.duration,Math.max(0,time))*motion.fps));
     render(0);
     const button = card.querySelector('[data-annotation-play]');
-    const label = card.querySelector('h4').textContent.toLowerCase();
+    const label = card.getAttribute('aria-label').toLowerCase();
     let visible = false, userPaused = matchMedia('(prefers-reduced-motion: reduce)').matches;
     let playing = false, elapsed = 0, previous = null, handle = null;
     const frame = now => {
