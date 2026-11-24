@@ -116,3 +116,26 @@
   $$('[data-weave-domain]').forEach(b=>b.addEventListener('click',()=>selectDataDomain(activeDomain===b.dataset.weaveDomain?'all':b.dataset.weaveDomain)));
 
 })();
+
+(() => {
+  const button = document.getElementById('copy-bibtex');
+  const content = document.getElementById('bibtex-content');
+  const status = document.getElementById('citation-status');
+  if (!button || !content) return;
+  let reset;
+  button.addEventListener('click', async () => {
+    clearTimeout(reset);
+    try {
+      await navigator.clipboard.writeText(content.textContent);
+      button.textContent = 'Copied!';
+      status.textContent = 'BibTeX copied to clipboard.';
+      reset = setTimeout(() => { button.textContent = 'Copy BibTeX'; status.textContent = ''; }, 2400);
+    } catch {
+      const range = document.createRange();
+      range.selectNodeContents(content);
+      const selection = window.getSelection();
+      selection.removeAllRanges(); selection.addRange(range);
+      status.textContent = 'Citation selected. Press Ctrl+C or ⌘C to copy.';
+    }
+  });
+})();
