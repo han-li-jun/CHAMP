@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#f8f7f2">
   <title>CHAMP · Whole-body Motion Intelligence</title>
   <link rel="icon" type="image/svg+xml" href="assets/images/d-robotics-mark.svg">
-  <link rel="stylesheet" href="styles.css?v=6c0eaf4e4b">
+  <link rel="stylesheet" href="styles.css?v=5965b391e2">
   <link rel="stylesheet" href="architecture.css?v=129af51d35">
   <link rel="stylesheet" href="motion-preview.css">
   <link rel="stylesheet" href="data-weave.css?v=ec88ccc39f">
@@ -44,7 +44,7 @@
     </div>
     <div class="hero-bottom"><span id="hero-clip-label">Popcorn serving · 2× speed</span><button id="hero-pause" aria-label="Pause background video"><span class="pause-symbol" aria-hidden="true">Ⅱ</span><span class="pause-label">Pause</span></button></div>
   </section>
-  <nav class="page-index" aria-label="On this page"><span>ON THIS PAGE</span><a href="#demos">01 &nbsp; Demonstrations</a><a href="#introduction">02 &nbsp; Introducing CHAMP</a><a href="#method">03 &nbsp; Method</a><a href="#data">04 &nbsp; Motion data</a><a href="#coordination">05 &nbsp; Whole-body skills</a><a href="#results">06 &nbsp; Results</a><a href="#citation">07 &nbsp; Citation</a></nav>
+  <nav class="page-index" aria-label="On this page"><span>ON THIS PAGE</span><a href="#demos">01 &nbsp; Demonstrations</a><a href="#introduction">02 &nbsp; Introducing CHAMP</a><a href="#method">03 &nbsp; Method</a><a href="#data">04 &nbsp; Motion data</a><a href="#coordination">05 &nbsp; Whole-body skills</a><a href="#results">06 &nbsp; Results</a></nav>
   <article class="article">
     <section class="section demo-section" id="demos" aria-labelledby="demo-heading">
       <div class="section-top"><p class="eyebrow">01 / CHAMP in action</p><h2 id="demo-heading">One body. Many ways to interact.</h2><p class="lead">Walking, reaching, bending, and handling objects—through coordinated body and hand actions.</p></div>
@@ -125,10 +125,8 @@
       </div>
       <p class="results-protocol wide">All methods use the same 100 demonstrations and number of training steps for each task. Popcorn serving is successful only when the entire sequence is completed.</p>
     </section>
-    <section class="section citation-section" id="citation" aria-labelledby="citation-heading">
-      <p class="eyebrow">07 / Citation</p>
-      <div class="citation-heading"><h2 id="citation-heading">BibTeX</h2><a href="https://arxiv.org/abs/2611.30449" target="_blank" rel="noopener noreferrer">View on arXiv <span aria-hidden="true">↗</span></a></div>
-      <div class="citation-card wide">
+    <div class="citation-footer" id="citation" role="group" aria-label="BibTeX citation">
+      <div class="citation-card">
         <div class="citation-toolbar"><span>arXiv:2611.30449</span><button type="button" id="copy-bibtex">Copy BibTeX</button></div>
         <pre tabindex="0" aria-label="CHAMP BibTeX citation"><code id="bibtex-content">@misc{han2026champ,
   title = {{CHAMP}: Coordinated Humanoid Loco-Manipulation with Whole-Body Motion Priors},
@@ -142,7 +140,7 @@
 }</code></pre>
       </div>
       <p class="citation-status" id="citation-status" role="status" aria-live="polite"></p>
-    </section>
+    </div>
   </article>
 </main>
 <footer><a class="brand footer-brand" href="#top" aria-label="D-Robotics CHAMP home"><img class="corporate-logo" src="assets/images/d-robotics-horizontal.png" alt="D-Robotics 地瓜机器人" width="1920" height="549"><span class="brand-project">CHAMP</span></a><span>Whole-body motion priors. Coordinated humanoid control.</span><a href="#top">Back to top ↑</a></footer>
