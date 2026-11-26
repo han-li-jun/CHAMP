@@ -6,6 +6,20 @@
   <meta name="description" content="Coordinated Humanoid Loco-Manipulation with Whole-Body Motion Priors.">
   <meta name="theme-color" content="#f8f7f2">
   <title>CHAMP · Whole-body Motion Intelligence</title>
+  <!-- Google Analytics 4: collect visits only on the published CHAMP site. -->
+  <script>
+    (() => {
+      if (location.hostname !== 'han-li-jun.github.io' || !location.pathname.startsWith('/CHAMP/')) return;
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function () { window.dataLayer.push(arguments); };
+      gtag('js', new Date());
+      gtag('config', 'G-PD8JDS4H8C');
+      const tag = document.createElement('script');
+      tag.async = true;
+      tag.src = 'https://www.googletagmanager.com/gtag/js?id=G-PD8JDS4H8C';
+      document.head.appendChild(tag);
+    })();
+  </script>
   <link rel="icon" type="image/svg+xml" href="assets/images/d-robotics-mark.svg">
   <link rel="stylesheet" href="styles.css?v=5965b391e2">
   <link rel="stylesheet" href="architecture.css?v=129af51d35">
